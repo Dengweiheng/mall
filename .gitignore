@@ -1,0 +1,25 @@
+# 忽略 IDE 和编辑器配置文件
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# 忽略操作系统临时文件
+.DS_Store
+Thumbs.db
+
+# 忽略根目录下与代码工程无关的辅助文档/图片/临时文件
+/商品图片/
+/项目图表/
+/图/
+/图代码/
+/要求.md
+/BCryptGen.java
+/gen_hash.js
+/package.json
+/package-lock.json
+
+# 忽略临时日志文件
+*.log
+*.txt

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.server.mapper.HomeMapper">
+
+    <select id="countTodayOrders" resultType="java.lang.Long">
+        SELECT COUNT(1) FROM `erp_order` WHERE TO_DAYS(create_time) = TO_DAYS(NOW())
+    </select>
+
+    <select id="sumTodaySales" resultType="java.math.BigDecimal">
+        SELECT IFNULL(SUM(total_amount), 0) FROM `erp_order` WHERE TO_DAYS(create_time) = TO_DAYS(NOW()) AND status != 4
+    </select>
+
+    <select id="countPendingOrders" resultType="java.lang.Long">
+        SELECT COUNT(1) FROM `erp_order` WHERE status IN (0, 1)
+    </select>
+
+    <select id="getRecentActivities" resultType="java.lang.String">
+        SELECT msg FROM (
+            SELECT CONCAT('新订单: ', order_no, ' (¥', total_amount, ')') as msg, create_time FROM erp_order
+            UNION ALL
+            SELECT CONCAT('库存盘点: ', p.name, ' (', s.change_amount, ')') as msg, s.create_time FROM erp_stock_record s
+            LEFT JOIN erp_product p ON s.product_id = p.id
+        ) t ORDER BY create_time DESC LIMIT 10
+    </select>
+
+</mapper>

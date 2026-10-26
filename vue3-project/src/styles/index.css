@@ -1,0 +1,37 @@
+/* 全局重置样式 */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* 侧边栏菜单样式优化 */
+.el-menu {
+  border-right: none !important;
+}
+
+/* 按钮悬浮效果 */
+.el-button {
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* 自定义卡片阴影 */
+.el-card {
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+}
+
+.el-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08) !important;
+}
+
+/* 价格字体颜色 */
+.price-tag {
+  color: #f56c6c;
+  font-weight: bold;
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.server.mapper.StockRecordMapper">
+
+    <select id="selectPageWithProductName" resultType="com.server.server.entity.StockRecord">
+        SELECT s.*, p.name as productName
+        FROM erp_stock_record s
+        LEFT JOIN erp_product p ON s.product_id = p.id
+        <where>
+            <if test="productId != null">
+                AND s.product_id = #{productId}
+            </if>
+            <if test="type != null">
+                AND s.type = #{type}
+            </if>
+        </where>
+        ORDER BY s.create_time DESC
+    </select>
+
+</mapper>
